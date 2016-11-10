@@ -125,18 +125,29 @@ function($stateProvider, $urlRouterProvider) {
 
 app.controller('ItemCtrl', [
 	'$scope',
+	'$http',
 	'$stateParams',
 	'items',
 	'cart',
-	function($scope,$stateParams, items, cart)
+	function($scope,$http,$stateParams, items, cart)
 	{
 
 		$scope.currentItem = items.items[$stateParams.id];
 
 		$scope.addToCart = function(currentItem){
 			cart.cart.push(currentItem);
-		}
-
+				
+			var config = { headers: { 'Content-Type': 'application/json; charset=utf-8'}}
+			console.log(currentItem);	
+			var url = "addCartItem";
+			$http.post(url, currentItem, config)
+				.success(function (data, status, headers, config) 
+				{
+					console.log("SUCCESS");	
+				})
+					
+			};
+		
 	}])
 
 app.controller('CartCtrl', [
