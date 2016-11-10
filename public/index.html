@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html ng-app = "store" ng-controller="HomeCtrl">
+
+	<head>
+		
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
+    	<script src="javascripts/app.js"></script>
+    	<link href="stylesheets/style.css" rel="stylesheet">
+		<title>Web Store</title>
+
+	</head>
+
+	<body>
+		<div id="header">
+			<img src="images/logo.png">
+			<div id="nav-main">
+				<ul id="left">
+					<li><a href="#/home">Home</a></li>
+				</ul>
+				<ul id="right">
+					<li><a href="#/cart">Cart</a></li>
+					<li><a href="#">Owner</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div>
+			<!-- This is where the templates from down below will be placed by Angular -->
+			 <ui-view></ui-view>
+
+		</div>
+		
+		<div id="footer">
+			<p> All Rights Reserved Because I Said So 2016 </p>
+		</div>
+
+		<script type="text/ng-template" id="/home.html">
+
+			<div id="items-list">
+				<div ng-repeat="next in items" class="item-wrapper">
+					<storeitems item='next'/>
+				</div>
+			</div>
+		</script>
+
+		<script type="text/ng-template" id="/item.html">
+
+			<div class="main-item">
+
+				<img ng-src={{currentItem.img}}>
+				<div class="item-info">
+					<p>Price: ${{currentItem.price}}.00</p>
+					<p>Description: {{currentItem.description}}</p>
+					<p id="addToCart" ng-click="addToCart(currentItem)">Add to Cart</p>
+
+				</div>
+			</div>
+
+		</script>
+
+		<script type="text/ng-template" id="/cart.html">
+
+		<h2>Your Cart!</h2>
+			<div id="items-list">
+				<div ng-repeat="next in items track by $index" class="item-wrapper">
+					<storeitems item='next'/>
+				</div>
+			</div>
+
+		</script>
+
+		<script type="text/ng-template" id="/owner.html">
+		</script>
+
+	</body>
+
+</html>
+
+
