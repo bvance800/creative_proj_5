@@ -27,7 +27,7 @@ app.factory('cart', [function(){
 app.factory('items', [function(){
 
 	var inv = {
-		items:items: [
+		items: [
 			{
 				img:"images/chromecast.png",
 				price: 30,
